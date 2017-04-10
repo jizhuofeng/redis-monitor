@@ -12,6 +12,7 @@ koa+react+antd写的一个简单redis状态监控工具. 目前主要监控内�
 ### 后端
     node版本： >=7.6.0
     web框架： koa2
+    数据存储： redis
     
 ## 部署
 
