@@ -1,0 +1,36 @@
+{
+  "name": "redis-monitor",
+  "version": "1.0.0",
+  "description": "koa+react+antd写的一个简单redis状态监控工具",
+  "main": "./server/bin/index.js",
+  "scripts": {
+    "start": "supervisor ./server/bin/index.js",
+    "dev": "supervisor ./server/bin/index.js ",
+    "dev-schedule": "supervisor ./server/schedule/index.js",
+    "product": "pm2 start ./server/bin/index.js --name redis-monitor",
+    "product-schedule": "pm2 start ./server/schedule/index.js --name redis-monitor-schedule",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-favicon": "^2.0.0",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "log4js": "^1.1.1",
+    "moment": "^2.18.1",
+    "node-schedule": "^1.2.1",
+    "redis": "^2.7.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jizhuofeng/redis-monitor.git"
+  },
+  "keywords": [
+    "redis",
+    "monitor"
+  ],
+  "author": "jizhuofeng",
+  "license": "MIT"
+}

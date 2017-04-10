@@ -1,0 +1,55 @@
+@import "../../less/color";
+.side-nav {
+  float: left;
+  width: 20%;
+  height: 100%;
+  background-color: @grey;
+  overflow-y: scroll;
+  color: #ced3cd;
+  li {
+    position: relative;
+    width: 100%;
+    height: 55px;
+    padding: 0 12px;
+    font: normal 15px/55px 'Arial';
+    cursor: pointer;
+    transition: all 0.3s;
+    &.list-node {
+      padding-left: 40px;
+      white-space: nowrap;
+    }
+    &.title-active {
+      background-color: #1b1b1b;
+      color: @main;
+    }
+    &.active {
+      color: @main;
+      background-color: #1b1b1b;
+    }
+    &.list-hide {
+      height: 0;
+      opacity: 0;
+      border-bottom: none;
+      overflow: hidden;
+    }
+    .operate {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      width: 60px;
+      height: 55px;
+      margin-top: -55px/2;
+      font: normal 13px/55px 'Arial';
+    }
+    &:hover {
+      color: @main;
+      &.list-node {
+        padding-left: 45px;
+        background-color: #1b1b1b;
+      }
+      &.active {
+        padding-left: 40px;
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+@import "../../global/less/mixins";
+@import "../../global/less/color";
+.data-inline-block {
+  position: relative;
+  width: 100%;
+  height: auto;
+  .clearfix();
+  .data-block {
+    position: relative;
+    float: left;
+    width: 24%;
+    height: 115px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    margin-left: 1.33%;
+    background-color: #fff;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    &:nth-child(1),
+    &:nth-child(4n+1) {
+      margin-left: 0;
+    }
+    &.up {
+      .data-content {
+        .sub-number {
+          color: #d9534f;
+        }
+        
+      }
+      .glyphicon {
+        right: -8px;
+        top: 70px;
+        color: #d9534f;
+      }
+    }
+    &.down {
+      .data-content {
+        .sub-number {
+          color: #5cb85c;
+        }
+      }
+      .glyphicon {
+        right: -8px;
+        top: 0;
+        color: #5cb85c;
+      }
+    }
+  }
+  .data-content {
+    width: 115px;
+    height: 100%;
+    padding-top: 7px;
+    &.grid-left {
+      width: 50%;
+      float: left;
+    }
+    &.grid-right {
+      width: 50%;
+      float: left;
+      padding-left: 10px;
+      background: #d8e1eb
+    }
+    &.center {
+      padding-top: 20%
+    }
+    .title {
+      margin-bottom: 2px;
+      font: normal 16px/17px 'Arial';
+      color: #555;
+    }
+    .number {
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      font: bolder 24px/35px 'Arial';
+      color: @main;
+      border-bottom: 1px solid #EEE;
+    }
+    .sub-title {
+      margin-bottom: 2px;
+      font: normal 12px/15px 'Arial';
+      color: #555;
+    }
+    .sub-number {
+      font: normal 14px/23px 'Arial';
+    }
+    .rate {
+      margin-bottom: 2px;
+      font: normal 13px/15px 'Arial';
+      color: @main;
+    }
+  }
+  .glyphicon {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0.3;
+  }
+}

@@ -1,0 +1,71 @@
+@import "./color";
+@import "./reset";
+@import "./mixins";
+#app {
+  position: relative;
+  width: 100%;
+  min-width: 980px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #eee;
+  padding-top: 45px;
+}
+.layout {
+  width: 100%;
+  height: 100%;
+  .clearfix();
+}
+.main-content {
+  float: left;
+  width: 80%;
+  height: 100%;
+  padding: 12px;
+  overflow-y: scroll;
+  .content-block {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 45px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    .clearfix();
+  }
+}
+.ant-table-middle .ant-table-thead {
+  th {
+    text-align: center;
+  }
+}
+.ant-table-body {
+  td {
+    text-align: center;
+  }
+}
+.ant-btn {
+  &.red-btn {
+    border-color: #ff5d5d;
+    background-color: #ff5d5d;
+    &:hover {
+      border-color: #ff7776;
+      background-color: #ff7776;
+    }
+  }
+  &.green-btn {
+    border-color: #87d068;
+    background-color: #87d068;
+    &:hover {
+      border-color: #9fd096;
+      background-color: #9fd096;
+    }
+  }
+}
+.ant-pagination {
+  margin-bottom: 10px;
+}
+.ant-card {
+  .label-name {
+    font: bolder 12px/12px 'Arial';
+    margin-right: 8.5px;
+  }
+}
