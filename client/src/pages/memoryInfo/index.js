@@ -92,9 +92,12 @@ class PageContent extends React.Component {
   }
   instanceChange = (value) => {
   	let tempState = Object.assign({}, this.state);
-  	tempState.currentInstance = {
-  		name: value
-  	}
+    for(let i = 0; i < tempState.instances.length; i++) {
+      if(tempState.instances[i].showName == value) {
+        tempState.currentInstance = tempState.instances[i];
+        break;
+      }
+    }
   	this.setState(tempState);
   }
   initInstances = (value) => {
@@ -102,6 +105,8 @@ class PageContent extends React.Component {
     tempState.instances = [];
     for(let key in value.data) {
       tempState.instances.push({
+        showName: key + '(' + value.data[key].host + 
+          ':' + value.data[key].port + ')',
         name: key,
         host: value.data[key].host,
         port: value.data[key].port
@@ -111,8 +116,9 @@ class PageContent extends React.Component {
     	tempState.currentInstance = tempState.instances[0];
     }
     
-    this.setState(tempState);
-    this.reqMemoryData();
+    this.setState(tempState, () => {
+       this.reqMemoryData();
+    });
   }
   reqMemoryData = () => {
   	let _self = this;
@@ -166,10 +172,11 @@ class PageContent extends React.Component {
         <div className="content-block top-block">
         	<Select placeholder="请选择实例" 
         		style={{ width: '15%' }}
-        		onChange={(value) => _self.instanceChange(value)}>
-        		{this.state.instances.map( (data, index)=> {
-        			return <Option key={index} value={data.name}>{data.name}</Option>
-        		})}
+            value={_self.state.currentInstance.showName}
+            onChange={(value) => _self.instanceChange(value)}>
+            {this.state.instances.map( (data, index)=> {
+              return <Option key={index} value={data.showName}>{data.showName}</Option>
+            })}
         	</Select>
         	<Select placeholder="请选择统计类型" defaultValue={"按分钟"}
         		style={{ width: '15%' }}
@@ -182,7 +189,7 @@ class PageContent extends React.Component {
               onChange={(moment, dateString) => this.rangePickChange(dateString)}
               defaultValue={[moment(this.state.beginTime, "YYYY-MM-DD HH:mm:ss"), 
               	moment(this.state.endTime, "YYYY-MM-DD HH:mm:ss")]}/>
-            <Button className="search-btn" type="primary" icon="search" onClick={() => this.reqMemoryData(1)}>查询</Button>
+            <Button className="search-btn" type="primary" icon="search" onClick={() => this.reqMemoryData()}>查询</Button>
         </div>
         <div className="content-block">
           <Charts title={"内存走势图"} loading={this.state.loading} option={this.state.chartOption}/>

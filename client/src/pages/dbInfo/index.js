@@ -105,17 +105,23 @@ class PageContent extends React.Component {
   }
   instanceChange = (value) => {
   	let tempState = Object.assign({}, this.state);
-  	tempState.currentInstance = {
-  		name: value
-  	}
-  	this.setState(tempState);
-  	this.getInstanceBaseInfo(tempState.currentInstance); 
+    for(let i = 0; i < tempState.instances.length; i++) {
+      if(tempState.instances[i].showName == value) {
+        tempState.currentInstance = tempState.instances[i];
+        break;
+      }
+    }
+  	this.setState(tempState, () => {
+      this.getInstanceBaseInfo(tempState.currentInstance); 
+    });
   }
   initInstances = (value) => {
     let tempState = Object.assign({}, this.state);
     tempState.instances = [];
     for(let key in value.data) {
       tempState.instances.push({
+        showName: key + '(' + value.data[key].host + 
+          ':' + value.data[key].port + ')',
         name: key,
         host: value.data[key].host,
         port: value.data[key].port
@@ -125,10 +131,12 @@ class PageContent extends React.Component {
     	tempState.currentInstance = tempState.instances[0];
     }
     
-    this.setState(tempState);
-    if(tempState.instances.length > 0) {
-    	this.getInstanceBaseInfo(this.state.instances[0]);
-    }
+    this.setState(tempState, () => {
+      if(tempState.instances.length > 0) {
+        this.getInstanceBaseInfo(this.state.instances[0]);
+      }
+    });
+
   }
   componentWillMount() {
     let _self = this;
@@ -154,9 +162,10 @@ class PageContent extends React.Component {
         <div className="content-block top-block">
         	<Select placeholder="请选择实例" 
         		style={{ width: '30%' }}
+            value={_self.state.currentInstance.showName}
         		onChange={(value) => _self.instanceChange(value)}>
         		{this.state.instances.map( (data, index)=> {
-        			return <Option key={index} value={data.name}>{data.name}</Option>
+        			return <Option key={index} value={data.showName}>{data.showName}</Option>
         		})}
         	</Select>
         </div>
